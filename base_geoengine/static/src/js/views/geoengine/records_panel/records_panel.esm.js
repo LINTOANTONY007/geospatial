@@ -70,7 +70,7 @@ export class RecordsPanel extends Component {
     filterItems(value, items) {
         const lowerValue = value.toLowerCase();
         return items.filter(
-            (item) => item.data.display_name.toLowerCase().indexOf(lowerValue) >= 0
+            (item) => item.data.name.toLowerCase().indexOf(lowerValue) >= 0
         );
     }
 }
