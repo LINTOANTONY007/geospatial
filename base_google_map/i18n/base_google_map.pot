@@ -4,14 +4,21 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-25 23:25+0000\n"
+"PO-Revision-Date: 2026-07-25 23:25+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "API key"
+msgstr ""
 
 #. module: base_google_map
 #: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__af
@@ -26,11 +33,6 @@ msgstr ""
 #. module: base_google_map
 #: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
 msgid "Allow Google Address Autocomplete on Website"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Allow Google Address Autocomplete on Website Form (requires Website)"
 msgstr ""
 
 #. module: base_google_map
@@ -53,11 +55,6 @@ msgstr ""
 #. module: base_google_map
 #: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__am
 msgid "Amharic"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Api key"
 msgstr ""
 
 #. module: base_google_map
@@ -222,19 +219,15 @@ msgstr ""
 
 #. module: base_google_map
 #: model:ir.model.fields,field_description:base_google_map.field_res_config_settings__google_maps_geometry
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
 msgid "Geometry"
 msgstr ""
 
 #. module: base_google_map
 #: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
 msgid ""
-"Geometry includes utility functions for calculating scalar geometric values (such as distance and area) on the surface of the earth.\n"
-"                                    Consult the"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Geometry library documentation"
+"Geometry includes utility functions for calculating scalar geometric values "
+"(such as distance and area) on the surface of the earth."
 msgstr ""
 
 #. module: base_google_map
@@ -308,16 +301,23 @@ msgid "Icelandic"
 msgstr ""
 
 #. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid ""
-"If you set the language of the map, it's important to consider setting the "
-"region too. This helps ensure that your application complies with local "
-"laws."
+#: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__id
+msgid "Indonesian"
 msgstr ""
 
 #. module: base_google_map
-#: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__id
-msgid "Indonesian"
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "Install Google Address Autocomplete on Website Form (requires Website)"
+msgstr ""
+
+#. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "Install the Google Map View module"
+msgstr ""
+
+#. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "Install the Google Marker Icon Picker module"
 msgstr ""
 
 #. module: base_google_map
@@ -363,11 +363,6 @@ msgstr ""
 #. module: base_google_map
 #: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__lo
 msgid "Lao"
-msgstr ""
-
-#. module: base_google_map
-#: model:ir.model.fields,field_description:base_google_map.field_res_config_settings____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: base_google_map
@@ -427,19 +422,16 @@ msgstr ""
 
 #. module: base_google_map
 #: model:ir.model.fields,field_description:base_google_map.field_res_config_settings__google_maps_places
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
 msgid "Places"
 msgstr ""
 
 #. module: base_google_map
 #: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
 msgid ""
-"Places enables your application to search for places such as establishments, geographic locations, or prominent points of interest, within a defined area.\n"
-"                                    Consult the"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Places library documentation"
+"Places enables your application to search for places such as establishments,"
+" geographic locations, or prominent points of interest, within a defined "
+"area."
 msgstr ""
 
 #. module: base_google_map
@@ -488,13 +480,32 @@ msgid "Russian"
 msgstr ""
 
 #. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "Select the Google Maps map theme"
+msgstr ""
+
+#. module: base_google_map
 #: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__sr
 msgid "Serbian"
 msgstr ""
 
 #. module: base_google_map
 #: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Set API keys and map localization"
+msgid ""
+"Set API keys and map localization. Visit the Google documentation about "
+"Localizing the Map."
+msgstr ""
+
+#. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid ""
+"Set the language of the map. If you set the language, consider setting the "
+"region too so your application complies with local laws."
+msgstr ""
+
+#. module: base_google_map
+#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
+msgid "Set the region of the map"
 msgstr ""
 
 #. module: base_google_map
@@ -583,26 +594,6 @@ msgid "Vietnamese"
 msgstr ""
 
 #. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "Visit the"
-msgstr ""
-
-#. module: base_google_map
 #: model:ir.model.fields.selection,name:base_google_map.selection__res_config_settings__google_maps_lang_localization__zu
 msgid "Zulu"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "about Localizing the Map"
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "for more information."
-msgstr ""
-
-#. module: base_google_map
-#: model_terms:ir.ui.view,arch_db:base_google_map.res_config_settings_view_form
-msgid "page"
 msgstr ""
