@@ -11,6 +11,7 @@
     "category": "Extra Tools",
     "depends": ["base_setup", "base_geolocalize"],
     "data": ["data/google_maps_libraries.xml", "views/res_config_settings.xml"],
+    "demo": ["demo/base_google_map_ir_config_parameter.xml"],
     "images": ["static/description/thumbnails.png"],
     "installable": True,
     "application": True,
