@@ -75,8 +75,8 @@ export class GoogleMapRenderer extends Component {
         this.defaultMarkerColor = "red";
         this.iconUrl = "/web_view_google_map/static/src/img/markers/";
         this.resModel = this.props.resModel;
-        this.archFields = [...archEl.querySelectorAll(":scope > field")].map(
-            (node) => node.getAttribute("name")
+        this.archFields = [...archEl.querySelectorAll(":scope > field")].map((node) =>
+            node.getAttribute("name")
         );
 
         onWillStart(async () => {
@@ -100,7 +100,10 @@ export class GoogleMapRenderer extends Component {
     async loadTheme() {
         try {
             const data = await rpc("/web/map_theme");
-            if (data?.theme && Object.prototype.hasOwnProperty.call(MAP_THEMES, data.theme)) {
+            if (
+                data?.theme &&
+                Object.prototype.hasOwnProperty.call(MAP_THEMES, data.theme)
+            ) {
                 this.theme = data.theme;
             }
         } catch {

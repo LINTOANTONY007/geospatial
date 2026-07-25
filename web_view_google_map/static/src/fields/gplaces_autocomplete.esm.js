@@ -109,7 +109,9 @@ export class GplacesAutocompleteField extends Component {
     }
 
     _fillGeneral(place, values) {
-        for (const [fieldName, source] of Object.entries(this.fillfields.general || {})) {
+        for (const [fieldName, source] of Object.entries(
+            this.fillfields.general || {}
+        )) {
             values[fieldName] = resolveSource(place, source);
         }
     }
@@ -133,7 +135,9 @@ export class GplacesAutocompleteField extends Component {
     }
 
     _fillAddress(place, values) {
-        for (const [fieldName, source] of Object.entries(this.fillfields.address || {})) {
+        for (const [fieldName, source] of Object.entries(
+            this.fillfields.address || {}
+        )) {
             if (["state_id", "country_id"].includes(fieldName)) {
                 continue;
             }
