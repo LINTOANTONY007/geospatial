@@ -1,5 +1,6 @@
-# Copyright (C) 2019, Open Source Integrators
+# Copyright (C) 2019 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
 
 GMAPS_LANG_LOCALIZATION = [
@@ -92,16 +93,16 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def get_region_selection(self):
-        country_ids = self.env["res.country"].search([])
-        values = [(country.code, country.name) for country in country_ids]
-        return values
+        country_ids = self.env["res.country"].search([("code", "!=", False)])
+        return [(country.code, country.name) for country in country_ids]
 
-    google_maps_view_api_key = fields.Char(string="Google Maps View Api Key")
+    google_maps_view_api_key = fields.Char()
     google_maps_lang_localization = fields.Selection(
-        selection=GMAPS_LANG_LOCALIZATION, string="Google Maps Language Localization"
+        selection=GMAPS_LANG_LOCALIZATION,
+        string="Google Maps Language Localization",
     )
     google_maps_region_localization = fields.Selection(
-        selection=get_region_selection, string="Google Maps Region Localization"
+        selection=get_region_selection,
     )
     google_maps_theme = fields.Selection(
         selection=[
@@ -127,88 +128,81 @@ class ResConfigSettings(models.TransientModel):
     @api.onchange("google_maps_lang_localization")
     def onchange_lang_localization(self):
         if not self.google_maps_lang_localization:
-            self.google_maps_region_localization = ""
+            self.google_maps_region_localization = False
 
     def set_values(self):
-        super(ResConfigSettings, self).set_values()
-        ICPSudo = self.env["ir.config_parameter"].sudo()
+        res = super().set_values()
+        icp_sudo = self.env["ir.config_parameter"].sudo()
         lang_localization = self._set_google_maps_lang_localization()
         region_localization = self._set_google_maps_region_localization()
-
         lib_places = self._set_google_maps_places()
         lib_geometry = self._set_google_maps_geometry()
-
-        active_libraries = "{},{}".format(lib_geometry, lib_places)
-
-        ICPSudo.set_param("google.api_key_geocode", self.google_maps_view_api_key)
-        ICPSudo.set_param("google.lang_localization", lang_localization)
-        ICPSudo.set_param("google.region_localization", region_localization)
-        ICPSudo.set_param("google.maps_theme", self.google_maps_theme)
-        ICPSudo.set_param("google.maps_libraries", active_libraries)
+        active_libraries = f"{lib_geometry},{lib_places}"
+        icp_sudo.set_param("google.api_key_geocode", self.google_maps_view_api_key)
+        icp_sudo.set_param("google.lang_localization", lang_localization)
+        icp_sudo.set_param("google.region_localization", region_localization)
+        icp_sudo.set_param("google.maps_theme", self.google_maps_theme)
+        icp_sudo.set_param("google.maps_libraries", active_libraries)
+        return res
 
     @api.model
     def get_values(self):
-        res = super(ResConfigSettings, self).get_values()
-        ICPSudo = self.env["ir.config_parameter"].sudo()
-
-        lang_localization = self._get_google_maps_lang_localization()
-        region_localization = self._get_google_maps_region_localization()
-
-        lib_places = self._get_google_maps_places()
-        lib_geometry = self._get_google_maps_geometry()
-
+        res = super().get_values()
+        icp_sudo = self.env["ir.config_parameter"].sudo()
         res.update(
             {
-                "google_maps_view_api_key": ICPSudo.get_param(
+                "google_maps_view_api_key": icp_sudo.get_param(
                     "google.api_key_geocode", default=""
                 ),
-                "google_maps_lang_localization": lang_localization,
-                "google_maps_region_localization": region_localization,
-                "google_maps_theme": ICPSudo.get_param(
+                "google_maps_lang_localization": (
+                    self._get_google_maps_lang_localization()
+                ),
+                "google_maps_region_localization": (
+                    self._get_google_maps_region_localization()
+                ),
+                "google_maps_theme": icp_sudo.get_param(
                     "google.maps_theme", default="default"
                 ),
-                "google_maps_places": lib_places,
-                "google_maps_geometry": lib_geometry,
+                "google_maps_places": self._get_google_maps_places(),
+                "google_maps_geometry": self._get_google_maps_geometry(),
             }
         )
         return res
 
     def _set_google_maps_lang_localization(self):
         if self.google_maps_lang_localization:
-            lang_localization = "&language=%s" % self.google_maps_lang_localization
-        else:
-            lang_localization = ""
-
-        return lang_localization
+            return f"&language={self.google_maps_lang_localization}"
+        return ""
 
     @api.model
     def _get_google_maps_lang_localization(self):
-        ICPSudo = self.env["ir.config_parameter"].sudo()
-        google_maps_lang = ICPSudo.get_param("google.lang_localization", default="")
+        icp_sudo = self.env["ir.config_parameter"].sudo()
+        google_maps_lang = (
+            icp_sudo.get_param("google.lang_localization", default="") or ""
+        )
         val = google_maps_lang.split("=")
-        lang = val and val[-1] or ""
-        return lang
+        return val and val[-1] or ""
 
     def _set_google_maps_region_localization(self):
         if self.google_maps_region_localization:
-            region_localization = "&region=%s" % self.google_maps_region_localization
-        else:
-            region_localization = ""
-
-        return region_localization
+            return f"&region={self.google_maps_region_localization}"
+        return ""
 
     @api.model
     def _get_google_maps_region_localization(self):
-        ICPSudo = self.env["ir.config_parameter"].sudo()
-        google_maps_region = ICPSudo.get_param("google.region_localization", default="")
+        icp_sudo = self.env["ir.config_parameter"].sudo()
+        google_maps_region = (
+            icp_sudo.get_param("google.region_localization", default="") or ""
+        )
         val = google_maps_region.split("=")
-        region = val and val[-1] or ""
-        return region
+        return val and val[-1] or ""
 
     @api.model
     def _get_google_maps_geometry(self):
-        ICPSudo = self.env["ir.config_parameter"].sudo()
-        google_maps_libraries = ICPSudo.get_param("google.maps_libraries", default="")
+        icp_sudo = self.env["ir.config_parameter"].sudo()
+        google_maps_libraries = (
+            icp_sudo.get_param("google.maps_libraries", default="") or ""
+        )
         libraries = google_maps_libraries.split(",")
         return "geometry" in libraries
 
@@ -217,8 +211,10 @@ class ResConfigSettings(models.TransientModel):
 
     @api.model
     def _get_google_maps_places(self):
-        ICPSudo = self.env["ir.config_parameter"].sudo()
-        google_maps_libraries = ICPSudo.get_param("google.maps_libraries", default="")
+        icp_sudo = self.env["ir.config_parameter"].sudo()
+        google_maps_libraries = (
+            icp_sudo.get_param("google.maps_libraries", default="") or ""
+        )
         libraries = google_maps_libraries.split(",")
         return "places" in libraries
 

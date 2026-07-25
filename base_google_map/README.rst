@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =======================
 Google Maps Integration
 =======================
@@ -13,22 +17,23 @@ Google Maps Integration
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fgeospatial-lightgray.png?logo=github
-    :target: https://github.com/OCA/geospatial/tree/14.0/base_google_map
+    :target: https://github.com/OCA/geospatial/tree/19.0/base_google_map
     :alt: OCA/geospatial
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/geospatial-14-0/geospatial-14-0-base_google_map
+    :target: https://translation.odoo-community.org/projects/geospatial-19-0/geospatial-19-0-base_google_map
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/geospatial&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/geospatial&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to setup Google Maps configuration.
+This module allows you to setup Google Maps configuration for map views
+and related widgets.
 
 **Table of contents**
 
@@ -38,15 +43,29 @@ This module allows you to setup Google Maps configuration.
 Configuration
 =============
 
-This module will install `base_setup` and `base_geolocalize`.
-*I recommend you to setup __Google Maps Key API__ and add it into Odoo `Settings > General` Settings when you installed this module*
+This module installs ``base_setup`` and ``base_geolocalize``.
 
-*__List of Google APIs & services required in order to make all features works__*
+After installation, configure the Google Maps API key under **Settings >
+General Settings > Google Maps View**.
+
+Google APIs and services required for all features:
+
 - Geocoding API
 - Maps JavaScript API
 - Places API
 
-Visit this [page](https://developers.google.com/maps/documentation/javascript/get-api-key) of how to get Google API Key
+See the `Google
+documentation <https://developers.google.com/maps/documentation/javascript/get-api-key>`__
+on how to get an API key.
+
+Usage
+=====
+
+1. Go to **Settings > General Settings**.
+2. Open the **Google Maps View** section.
+3. Set the API key, theme, language and region.
+4. Enable the Geometry and Places libraries as needed.
+5. Optionally enable related Google Maps view or widget modules.
 
 Bug Tracker
 ===========
@@ -54,7 +73,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/geospatial/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/geospatial/issues/new?body=module:%20base_google_map%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/geospatial/issues/new?body=module:%20base_google_map%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -62,30 +81,30 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
-* Open Source Integrators
+* Gray Matter Logic
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Yopi Angi <yopiangi@gmail.com>
+- Yopi Angi yopiangi@gmail.com
+- `Gray Matter Logic <https://www.graymatterlogic.com>`__:
 
-* Open Source Integrators:
+  - Wolfgang Hall whall@opensourceintegrators.com
+  - Daniel Reis dreis@opensourceintegrators.com
+  - Ammar Officewala aofficewala@opensourceintegrators.com
+  - Maxime Chambreuil maxime.chambreuil@graymatterlogic.com
 
-  * Wolfgang Hall <whall@opensourceintegrators.com>
-  * Daniel Reis <dreis@opensourceintegrators.com>
-  * Ammar Officewala <aofficewala@opensourceintegrators.com>
-
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Serpent Consulting Services Pvt. Ltd. support@serpentcs.com
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 Module icon by Odoo S.A., LGPL 3.0
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -108,6 +127,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-gityopie| |maintainer-wolfhall| 
 
-This module is part of the `OCA/geospatial <https://github.com/OCA/geospatial/tree/14.0/base_google_map>`_ project on GitHub.
+This module is part of the `OCA/geospatial <https://github.com/OCA/geospatial/tree/19.0/base_google_map>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
