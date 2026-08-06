@@ -1,14 +1,12 @@
 # Copyright 2011-2024 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, fields, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
-
-    opening_hours = fields.Char(string="Opening hours")
 
     AUTHORIZED_FIELDS = ["name", "city", "zip", "street", "street2", "tag"]
 
