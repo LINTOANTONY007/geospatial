@@ -1,7 +1,7 @@
 # Copyright 2011-2024 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -59,7 +59,8 @@ class ResPartner(models.Model):
                 WHERE
                     res_partner_res_partner_category_rel.partner_id = res_partner.id
                     AND
-                    res_partner_res_partner_category_rel.category_id = res_partner_category.id
+                    res_partner_res_partner_category_rel.category_id =
+                    res_partner_category.id
                     AND res_partner.type='store'
             ),
             all_tags as (
@@ -77,18 +78,18 @@ class ResPartner(models.Model):
         return results
 
     @api.model
-    def fetch_partner_geoengine(self, tags, lang, maxResults):
+    def fetch_partner_geoengine(self, tags, lang, max_results):
         domain = [("type", "=", "store")]
         for tag in tags:
             field, value = tag.values()
             if field not in self.AUTHORIZED_FIELDS:
-                raise ValidationError(_("Unauthorized field"))
+                raise ValidationError(self.env._("Unauthorized field"))
             domain.append((field.replace("tag", "category_id.name"), "ilike", value))
 
         partners = self.sudo().search(domain)
         features = []
 
-        if len(partners) > int(maxResults):
+        if len(partners) > int(max_results):
             return {
                 "error": "Too many results",
                 "message": f"Too many results: {len(partners)}",
