@@ -195,7 +195,7 @@ class Search {
         this.stores = stores;
         /**
          * The last search text
-         * @type {string}
+         * @type {String}
          */
         this.last_search_text = "";
 
@@ -206,12 +206,12 @@ class Search {
         this.mapElement = mapElement;
         /**
          * The maximum number of results
-         * @type {number}
+         * @type {Number}
          */
         this.maxResults = maxResults;
         /**
          * The zoom level of the map
-         * @type {number}
+         * @type {Number}
          */
         this.mapZoom = mapZoom;
         /**
@@ -247,7 +247,7 @@ class Search {
 
         /**
          * The language of the user
-         * @type {string}
+         * @type {String}
          */
         this.lang = (document.documentElement.getAttribute("lang") || "en_US").replace(
             "-",
