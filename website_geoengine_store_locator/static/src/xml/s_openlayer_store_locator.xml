@@ -6,33 +6,35 @@
         role="group"
     >
         <div class="s_store_locator_popover_header">
-            <strong t-esc="name"/>
+            <strong t-esc="name" />
         </div>
         <div class="s_store_locator_popover_address">
             <t t-if="street">
-                <span t-esc="street"/>
-                <br/>
+                <span t-esc="street" />
+                <br />
             </t>
             <t t-if="street2">
-                <span t-esc="street2"/>
-                <br/>
+                <span t-esc="street2" />
+                <br />
             </t>
-            <span t-esc="zip"/>
+            <span t-esc="zip" />
             <t t-if="zip and city">
-                <span t-esc="' '"/>
+                <span t-esc="' '" />
             </t>
-            <span t-esc="city"/>
+            <span t-esc="city" />
         </div>
         <t t-if="tags">
             <div class="s_store_locator_popover_meta s_store_locator_popover_meta_tags">
-                <span class="fa fa-tag" aria-hidden="true"/>
-                <span class="p-1" t-esc="tags"/>
+                <span class="fa fa-tag" aria-hidden="true" />
+                <span class="p-1" t-esc="tags" />
             </div>
         </t>
         <t t-if="opening_hours">
-            <div class="s_store_locator_popover_meta s_store_locator_popover_meta_hours">
-                <span class="fa fa-clock-o" aria-hidden="true"/>
-                <span class="p-1" t-esc="opening_hours"/>
+            <div
+                class="s_store_locator_popover_meta s_store_locator_popover_meta_hours"
+            >
+                <span class="fa fa-clock-o" aria-hidden="true" />
+                <span class="p-1" t-esc="opening_hours" />
             </div>
         </t>
     </div>

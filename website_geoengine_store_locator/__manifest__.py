@@ -17,12 +17,14 @@
             "website_geoengine_store_locator/static/lib/node_modules/ol/dist/ol.js",
             "website_geoengine_store_locator/static/lib/node_modules/jquery-flexdatalist/jquery.flexdatalist.js",
             "website_geoengine_store_locator/static/src/scss/snippets/s_openlayer_store_locator/frontend.scss",
+            "website_geoengine_store_locator/static/src/js/snippets/s_openlayer_store_locator/map_utils.esm.js",
             "website_geoengine_store_locator/static/src/js/snippets/s_openlayer_store_locator/frontend.esm.js",
             "website_geoengine_store_locator/static/src/xml/s_openlayer_store_locator.xml",
             "web/static/lib/stacktracejs/stacktrace.js",
         ],
         "website.assets_wysiwyg": [
-            "website_geoengine_store_locator/static/src/js/snippets/s_openlayer_store_locator/snippet.options.esm.js"
+            "website_geoengine_store_locator/static/src/js/snippets/s_openlayer_store_locator/map_utils.esm.js",
+            "website_geoengine_store_locator/static/src/js/snippets/s_openlayer_store_locator/snippet.options.esm.js",
         ],
     },
     "maintainers": ["Wouitmil"],

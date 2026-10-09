@@ -10,6 +10,7 @@
 import publicWidget from "@web/legacy/js/public/public_widget";
 import {renderToElement} from "@web/core/utils/render";
 import {rpc} from "@web/core/network/rpc";
+import {createOlMap} from "./map_utils.esm";
 
 /**
  * Create a standard symbol for a POI
@@ -186,9 +187,17 @@ publicWidget.registry.OpenLayerStoreLocator = publicWidget.Widget.extend({
      * @override
      */
     start() {
-        if (!this.el.querySelector(".ol-viewport")) {
-            this._initMap();
+        // Re-attach #popup to this.el before removing ol-viewport
+        // (OL moves it inside .ol-viewport on first init)
+        const popup =
+            this.el.querySelector(".ol-viewport #popup") ||
+            this.el.querySelector("#popup");
+        if (popup) {
+            this.el.appendChild(popup); // Rescue it before removal
         }
+        this.el.querySelector(".ol-viewport")?.remove();
+        this.el.querySelector("ul.flexdatalist-multiple")?.remove();
+        this._initMap();
         return this._super(...arguments);
     },
 
@@ -198,39 +207,8 @@ publicWidget.registry.OpenLayerStoreLocator = publicWidget.Widget.extend({
     _initMap() {
         const dataset = this.el.dataset;
         const mapType = dataset.mapType || "mapnik";
-
-        const storesSource = new ol.source.Vector();
-        const stores = new ol.layer.Vector({
-            source: storesSource,
-        });
         const mapElement = this.el.querySelector(".map");
-        const map = new ol.Map({
-            target: mapElement,
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM({
-                        url: {
-                            mapnik: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                            cyclemap:
-                                "https://tile.thunderforest.com/cycle/{z}/{x}/{y}@2x.png?apikey=...",
-                            cyclosm:
-                                "https://{a-c}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-                            mobility:
-                                "https://tile.thunderforest.com/transport/{z}/{x}/{y}@2x.png?apikey=...",
-                            topo: "https://tile.tracestrack.com/topo__/{z}/{x}/{y}.png?key=...",
-                            hot: "https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
-                        }[mapType],
-                    }),
-                }),
-                stores,
-            ],
-            view: new ol.View({
-                projection: "EPSG:3857",
-                center: ol.proj.fromLonLat([6, 46]),
-                zoom: 8,
-                minResolution: 0.299,
-            }),
-        });
+        const {map, stores} = createOlMap(mapElement, mapType);
 
         if (mapElement) {
             this._initPopover(this.el.querySelector("#popup"), map);
@@ -445,7 +423,7 @@ publicWidget.registry.OpenLayerStoreLocator = publicWidget.Widget.extend({
         const args = {
             tags: tags,
             lang: this._searchLang,
-            maxResults: this._searchMaxResults,
+            max_results: this._searchMaxResults,
         };
 
         rpc("/website-geoengine/partners", args).then(
